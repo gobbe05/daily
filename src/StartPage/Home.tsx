@@ -17,7 +17,7 @@ function Home() {
     else return (
         <>
             <div>
-                <h1>Daily</h1>
+                <h1 className="text-red-900">Daily</h1>
                 <p>By Gabriel Raskov</p>
             </div>
             <p>Small improvements day by day</p>
