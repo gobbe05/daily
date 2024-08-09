@@ -19,13 +19,15 @@ export default function Mission({mission} : MissionProps) {
     })
     return (
         <>
-            <div>
-                <p>{mission.name}</p>
-                <input type="checkbox" defaultChecked={mission.finished} onClick={() => {
+            <div className="flex items-center">
+                <input className="w-8 h-8" type="checkbox" defaultChecked={mission.finished} onClick={() => {
                     mutation.mutate({
                         id: mission.id
                     })
                 }}/>
+                <p className="text-xl font-semibold ml-4">{mission.name}</p>
+
+                <p className="ml-auto mx-2">Remove</p>
             </div>
 
         </>

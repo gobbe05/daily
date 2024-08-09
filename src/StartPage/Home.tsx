@@ -15,17 +15,18 @@ function Home() {
     if (isPending) return "Loading..."
     else if (error) return "An error has occured: " + error.message 
     else return (
-        <>
+        <div className="flex flex-col justify-between scrollbar py-8 w-[640px] h-full mx-auto">
             <div>
-                <h1 className="text-red-900">Daily</h1>
-                <p>By Gabriel Raskov</p>
+                <h1 className="text-4xl font-semibold">Daily</h1>
+                <p className="font-light ml-8 mt-1">By Gabriel Raskov</p>
             </div>
-            <p>Small improvements day by day</p>
-            {data.missions && data.missions.map((m: IMission) => ( 
-                <Mission key={m.id} mission={m} />
-            ))}
+            <div className="flex flex-col h-3/4 overflow-scroll gap-4 my-4">
+                {data.missions && data.missions.map((m: IMission) => ( 
+                    <Mission key={m.id} mission={m} />
+                ))}
+            </div>
             <NewMission />
-        </>
+        </div>
     )
 }
 

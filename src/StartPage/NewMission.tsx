@@ -19,20 +19,19 @@ export default function NewMission() {
             })
         ),
         onSuccess: () => {
-            console.log("hej")
             queryClient.invalidateQueries({queryKey: ["missions"]})
         }
     })
 
     return (
-        <>
+        <div className="flex flex-col">
             <input type="text" value={input} onChange={(e) => {setInput(e.target.value)}}/>
-            <button onClick={() => {
+            <button className="bg-white my-2 p-2" onClick={() => {
                 mutation.mutate({
                     id: Date.now(),
                     name: input
                 })
             }}>New</button>
-        </>
+        </div>
     )
 }

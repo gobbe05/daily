@@ -7,7 +7,9 @@ function App() {
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <Home />
+        <div className="bg-blue-300 h-dvh">
+          <Home />
+        </div>
       </QueryClientProvider>
     </>
   )
