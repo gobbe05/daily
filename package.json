@@ -13,7 +13,9 @@
     "@tanstack/react-query": "^5.51.23",
     "init": "^0.1.2",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-icons": "^5.2.1",
+    "react-router-dom": "^6.26.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",

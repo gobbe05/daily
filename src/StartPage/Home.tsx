@@ -1,4 +1,5 @@
 import IMission from "../Interfaces/IMission"
+import Header from "../Layout/Header/Header"
 import Mission from "./Mission"
 import NewMission from "./NewMission"
 import { useQuery } from "@tanstack/react-query"
@@ -15,12 +16,9 @@ function Home() {
     if (isPending) return "Loading..."
     else if (error) return "An error has occured: " + error.message 
     else return (
-        <div className="flex flex-col justify-between scrollbar py-8 w-[640px] h-full mx-auto">
-            <div>
-                <h1 className="text-4xl font-semibold">Daily</h1>
-                <p className="font-light ml-8 mt-1">By Gabriel Raskov</p>
-            </div>
-            <div className="flex flex-col h-3/4 overflow-scroll gap-4 my-4">
+        <div className="flex flex-col justify-between gap-8 text-gray-700 py-16 w-[640px] h-full mx-auto">
+           <Header /> 
+            <div className="flex flex-col h-3/4 gap-4 my-4">
                 {data.missions && data.missions.map((m: IMission) => ( 
                     <Mission key={m.id} mission={m} />
                 ))}

@@ -20,18 +20,19 @@ export default function NewMission() {
         ),
         onSuccess: () => {
             queryClient.invalidateQueries({queryKey: ["missions"]})
+            setInput("")
         }
     })
 
     return (
         <div className="flex flex-col">
-            <input type="text" value={input} onChange={(e) => {setInput(e.target.value)}}/>
-            <button className="bg-white my-2 p-2" onClick={() => {
+            <input className="bg-slate-700 text-slate-200 text-lg text-center font-semibold p-2 rounded-md" placeholder="Create a new routine..." type="text" value={input} onChange={(e) => {setInput(e.target.value)}}/>
+            <button className="bg-yellow-200 text-slate-800 font-semibold text-xl my-2 p-2 rounded-md" onClick={() => {
                 mutation.mutate({
                     id: Date.now(),
                     name: input
                 })
-            }}>New</button>
+            }}>New Routine</button>
         </div>
     )
 }
