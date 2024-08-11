@@ -7,12 +7,13 @@ export default function NewMission() {
     const [input, setInput] = useState<string>("")
     const mutation = useMutation({
         mutationFn: ({id, name}: {id: number, name: string}) => (
-            fetch("http://127.0.0.1:3000/user/newmission", {
+            fetch("http://192.168.68.113:3000/user/newmission", {
                 method: "POST",
                 body: JSON.stringify({
                     id: id,
                     name: name 
                 }),
+                credentials: "include",
                 headers: {
                     'Content-Type': "application/json"
                 }
@@ -32,7 +33,7 @@ export default function NewMission() {
                     id: Date.now(),
                     name: input
                 })
-            }}>New Routine</button>
+            }}>Add Routine</button>
         </div>
     )
 }
