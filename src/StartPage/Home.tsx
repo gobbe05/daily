@@ -7,10 +7,10 @@ import { useQuery } from "@tanstack/react-query"
 function Home() {
     const {isPending, error, data} = useQuery({
         queryKey: ["missions"],
-        queryFn: () => 
-            fetch("http://192.168.68.113:3000/user/getmissions", {credentials: "include"}).then((res) => 
+        queryFn: () =>{ 
+            return fetch(import.meta.env.VITE_SERVER_ADDRESS + "/user/getmissions", {credentials: "include"}).then((res) => 
                 res.json()    
-            )
+            )}
         
     })
     if (isPending) return "Loading..."
@@ -20,7 +20,7 @@ function Home() {
            <Header /> 
             <div className="flex flex-col h-3/4 gap-4 my-4">
                 {data.missions && data.missions.map((m: IMission) => ( 
-                    <Mission key={m.id} mission={m} />
+                    <Mission key={m._id} mission={m} />
                 ))}
             </div>
             <NewMission />

@@ -10,7 +10,7 @@ interface MissionProps {
 export default function Mission({mission} : MissionProps) {
     const updateMutation = useMutation({
         mutationFn: ({id}: {id: number}) => (
-            fetch("http://192.168.68.113:3000/user/updatemission", {
+            fetch(import.meta.env.VITE_SERVER_ADDRESS + "/user/updatemission", {
                 method: "POST",
                 body: JSON.stringify({id: id}),
                 credentials: "include",
@@ -25,7 +25,7 @@ export default function Mission({mission} : MissionProps) {
     })
     const deleteMutation = useMutation({
         mutationFn: ({id} : {id: number}) => (
-            fetch("http://192.168.68.113:3000/user/removemission", {
+            fetch(import.meta.env.VITE_SERVER_ADDRESS + "/user/removemission", {
                 method: "POST",
                 body: JSON.stringify({id: id}),
                 credentials: "include",
@@ -41,9 +41,9 @@ export default function Mission({mission} : MissionProps) {
 
     return (
         <>
-            <div className={`flex items-center p-2 rounded-md ${mission.finished ? "bg-yellow-200 text-slate-700" : "bg-slate-700 text-yellow-200"} transition-all`} onClick={() => {
+            <div className={`flex items-center p-2 rounded-md cursor-pointer ${mission.finished ? "bg-yellow-200 text-slate-700" : "bg-slate-700 text-yellow-200"} transition-all`} onClick={() => {
                     updateMutation.mutate({
-                        id: mission.id
+                        id: mission._id
                     })
                 }}>
                 <div className={`pl-2 ${mission.finished ? "" : "hidden"}`}>
@@ -52,7 +52,7 @@ export default function Mission({mission} : MissionProps) {
                 <p className="text-xl font-semibold ml-2">{mission.name}</p>
                 <p className="ml-auto p-2 mx-2 rounded-full bg-slate-700 hover:bg-red-400 text-white cursor-pointer" onClick={() => {
                     deleteMutation.mutate({
-                        id: mission.id
+                        id: mission._id
                     })
                 }}><FiTrash2 size={24} /></p>
             </div>

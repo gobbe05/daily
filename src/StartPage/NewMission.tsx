@@ -7,7 +7,7 @@ export default function NewMission() {
     const [input, setInput] = useState<string>("")
     const mutation = useMutation({
         mutationFn: ({id, name}: {id: number, name: string}) => (
-            fetch("http://192.168.68.113:3000/user/newmission", {
+            fetch(import.meta.env.VITE_SERVER_ADDRESS + "/user/newmission", {
                 method: "POST",
                 body: JSON.stringify({
                     id: id,

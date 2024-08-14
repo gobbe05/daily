@@ -1,5 +1,5 @@
 export default interface IMission {
-    id: number,
+    _id: number,
     name: string,
     finished: boolean
 }

@@ -1,5 +1,7 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
+import Header from "../Layout/Header/Header"
+import GoToStart from "../Layout/GoToStart"
 
 export default function SignUp() {
     const navigate = useNavigate()
@@ -8,7 +10,7 @@ export default function SignUp() {
     const [confirmPassword, setConfirmPassword] = useState<string>("") 
    
     async function Register() {
-        const response = await fetch("http://192.168.68.113:3000/auth/register", {
+        const response = await fetch(import.meta.env.VITE_SERVER_ADDRESS + "/auth/register", {
             method: "POST",
             body: JSON.stringify({
                 username,
@@ -24,28 +26,30 @@ export default function SignUp() {
     }
 
     return (
-        <div className="flex items-center h-dvh">
-            <div className="flex justify-center bg-slate-700 text-white p-16 mx-auto w-[640px]">
+        <div className="flex flex-col justify-center gap-4 m-auto h-dvh max-w-[640px]">
+            <Header />
+            <div className="flex flex-col justify-center bg-slate-700 text-white p-8 rounded-md mx-auto w-[640px]">
                 <div>
-
+                    <h1 className="text-2xl mt-2">Sign Up</h1>
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 mt-2">
                     <div>
-                        <p>Username</p>
-                        <input className="text-slate-700" type="username" onChange={(e) => setUsername(e.target.value)}/>
+                        <p className="font-light text-sm">Username</p>
+                        <input className="text-slate-700 w-full px-2 py-1 rounded-md" type="username" onChange={(e) => setUsername(e.target.value)}/>
                     </div>
                     <div>
-                        <p>Password</p>
-                        <input className="text-slate-700" type="password" onChange={(e) => setPassword(e.target.value)}/>
+                        <p className="font-light text-sm">Password</p>
+                        <input className="text-slate-700 w-full px-2 py-1 rounded-md" type="password" onChange={(e) => setPassword(e.target.value)}/>
                     </div>
                     <div>
-                        <p>Confirm Password</p>
-                        <input className="text-slate-700" type="password" onChange={(e) => setConfirmPassword(e.target.value)}/>
+                        <p className="font-light text-sm">Confirm Password</p>
+                        <input className="text-slate-700 w-full px-2 py-1 rounded-md" type="password" onChange={(e) => setConfirmPassword(e.target.value)}/>
                     </div>
-                    <button className="bg-slate-600 hover:bg-yellow-200 hover:text-slate-700 p-2 transition-all" onClick={Register}>Register</button>
+                    <button className="bg-slate-600 hover:bg-yellow-200 hover:text-slate-700 p-2 rounded-md transition-all" onClick={Register}>Register</button>
                     <p>Already have an account? <Link className="text-yellow-200" to="/login">Login</Link></p>
                 </div>
             </div>
+            <GoToStart />
         </div>
     )
 }
